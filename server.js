@@ -7,15 +7,21 @@ var botName = '/bot';
 var TOKEN = '252207255:AAEK1kVW-GA5Q00kiq0LpaSj-6gj2bNhwAw';
 
 
+var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
-var http = require('https');
+var https = require('https');
 
+app.use(bodyParser.json());
 
 app.post('/message', function(req, resp) {
-    console.log('Message received: '+req);
+    console.log('Message received: '+req.body);
+
+    resp.status(200).send();
 
 });
+
+
 
 app.listen(PORT, function() {
     console.log('Server started on port '+PORT+'.');
@@ -34,7 +40,7 @@ app.listen(PORT, function() {
     };
 
 
-    var req = http.request(options, function(response) {
+    var req = https.request(options, function(response) {
         console.log('statusCode:', response.statusCode);
         console.log('headers:', response.headers);
         response.on('data', function(chunk) {
