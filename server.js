@@ -15,7 +15,7 @@ var https = require('https');
 app.use(bodyParser.json());
 
 app.post('/message', function(req, resp) {
-    console.log('Message received: '+req.body);
+    console.log('Message received: '+JSON.stringify(req.body));
 
     resp.status(200).send();
 
