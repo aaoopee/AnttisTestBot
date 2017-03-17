@@ -1,0 +1,19 @@
+{
+  "name": "anttistestbot",
+  "version": "0.0.1",
+  "description": "Chat bot to test Telegram.orgs bot API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaoopee/AnttisTestBot.git"
+  },
+  "author": "Antti Pelkonen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaoopee/AnttisTestBot/issues"
+  },
+  "homepage": "https://github.com/aaoopee/AnttisTestBot#readme"
+}
