@@ -1,15 +1,15 @@
 var PORT = process.env.PORT || 3000;
 
-var serverUrl = '';
+var serverUrl = 'https://morning-oasis-34627.herokuapp.com';
 
-var baseUrl = 'https://api.telegram.org';
-var botName = '/AnttisTestBot';
+var baseUrl = 'api.telegram.org';
+var botName = '/bot';
 var TOKEN = '252207255:AAEK1kVW-GA5Q00kiq0LpaSj-6gj2bNhwAw';
 
 
 var express = require('express');
 var app = express();
-var https = require('https');
+var http = require('https');
 
 
 app.post('/message', function(req, resp) {
@@ -24,19 +24,26 @@ app.listen(PORT, function() {
 
     var options = {
         host: baseUrl,
-        path: botName+':'+TOKEN+'/setWebHook',
+        path: botName+TOKEN+'/setWebHook',
+        port: 443,
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Content-Length': Buffer.byteLength(data)
         }
     };
 
-    // https.request(options, function(response) {
-    //     response.on('data', function(chunk) {
-    //         console.log(`BODY: ${chunk}`);
-    //     });
-    //     res.on('end', function() {
-    //         console.log('No more data in response.');
-    //     });
-    // });
+
+    var req = http.request(options, function(response) {
+        console.log('statusCode:', response.statusCode);
+        console.log('headers:', response.headers);
+        response.on('data', function(chunk) {
+            console.log(`BODY: ${chunk}`);
+        });
+        response.on('end', function() {
+            console.log('No more data in response.');
+        });
+    });
+    req.write(data);
+    req.end();
 });
