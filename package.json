@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/aaoopee/AnttisTestBot/issues"
   },
-  "homepage": "https://github.com/aaoopee/AnttisTestBot#readme"
+  "homepage": "https://github.com/aaoopee/AnttisTestBot#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
 }
