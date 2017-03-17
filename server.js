@@ -14,8 +14,44 @@ var https = require('https');
 
 app.use(bodyParser.json());
 
+
+function sendMessage(response) {
+    var data = JSON.stringify(response);
+    console.log('Sending '+data);
+
+    var options = {
+        host: baseUrl,
+        path: botName+TOKEN+'/sendMessage',
+        port: 443,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(data)
+        }
+    };
+
+    var req = https.request(options, function(response) {
+        console.log('statusCode:', response.statusCode);
+        console.log('headers:', response.headers);
+        response.on('data', function(chunk) {
+            console.log(`BODY: ${chunk}`);
+        });
+        response.on('end', function() {
+            console.log('No more data in response.');
+        });
+    });
+    req.write(data);
+    req.end();
+}
+
 app.post('/message', function(req, resp) {
+    var response = {};
     console.log('Message received: '+JSON.stringify(req.body));
+
+    response.chat_id = body.message.chat.id;
+    response.text = body.messa.chat.text;
+
+    sendMessage(response);
 
     resp.status(200).send();
 
