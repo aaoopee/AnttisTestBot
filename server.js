@@ -49,7 +49,7 @@ app.post('/message', function(req, resp) {
     console.log('Message received: '+JSON.stringify(req.body));
 
     response.chat_id = req.body.message.chat.id;
-    response.text = req.body.message.chat.text;
+    response.text =    req.body.message.text;
 
     sendMessage(response);
 
