@@ -48,8 +48,8 @@ app.post('/message', function(req, resp) {
     var response = {};
     console.log('Message received: '+JSON.stringify(req.body));
 
-    response.chat_id = body.message.chat.id;
-    response.text = body.messa.chat.text;
+    response.chat_id = req.body.message.chat.id;
+    response.text = req.body.message.chat.text;
 
     sendMessage(response);
 
