@@ -4,7 +4,7 @@ var serverUrl = 'https://morning-oasis-34627.herokuapp.com';
 
 var baseUrl = 'api.telegram.org';
 var botName = '/bot';
-var TOKEN = '252207255:AAEK1kVW-GA5Q00kiq0LpaSj-6gj2bNhwAw';
+var TOKEN = process.env.TOKEN;
 
 
 var bodyParser = require('body-parser');
